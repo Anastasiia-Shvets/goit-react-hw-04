@@ -12,6 +12,7 @@ function App() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!query) return;
     const fatchData = async () => {
       setIsLoading(true)
       try {
@@ -24,7 +25,7 @@ function App() {
       }
     };
     fatchData()
-  },[query, page])
+  }, [query, page])
 
 
   const onHandleSubmit = value => {
