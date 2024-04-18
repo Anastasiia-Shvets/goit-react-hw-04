@@ -1,14 +1,17 @@
-// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import { FallingLines } from 'react-loader-spinner';
 
-// import Loader from 'react-loader-spinner';
+const Loader = () => {
+    return (
+        <div style={{ textAlign: 'center', marginTop: '20px' }}>
+            <FallingLines
+                color="#4fa94d"
+                width="100"
+                visible={true}
+                ariaLabel="falling-circles-loading"
+            />
 
+        </div>
+    );
+};
 
-// const CustomLoader = () => {
-//     return (
-//         <div style={{ textAlign: 'center', marginTop: '20px' }}>
-//             <Loader type="Puff" color="#00BFFF" height={100} width={100} />
-//         </div>
-//     );
-// };
-
-// export default CustomLoader;
+export default Loader;

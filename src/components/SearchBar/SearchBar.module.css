@@ -1,0 +1,13 @@
+.form {
+    display: flex;
+    justify-content: center;
+}
+
+.input {
+    width: 225px;
+    border-radius: 5px;
+    padding-left: 15px;
+    margin-right: 8px;
+}
+
+.btn {}
