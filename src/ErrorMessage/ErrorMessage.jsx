@@ -1,16 +1,8 @@
-import { useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 
 const ErrorMessage = ({ error }) => {
-    toast.error("This didn't work.");
-    return (
-        <Toaster
-            position="top-center"
-            reverseOrder={false}
-        />
-        
-    )
-    
+    toast.error('This is an error!');
+    return null;
 };
 
 export default ErrorMessage;

@@ -1,5 +1,6 @@
 import './App.css'
 import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast';
 import SearchBar from './components/SearchBar/SearchBar'
 import { getGallery } from './API/apiServer';
 import ImageGallery from './components/ImageGallery/ImageGallery';
@@ -27,7 +28,6 @@ function App() {
       setIsLoading(true)
       try {
         const { results, total_pages } = await getGallery(query, page)
-        console.log(results, total_pages);
         if (!results.length) {
           setIsEmpty(true);
           return;
@@ -36,7 +36,6 @@ function App() {
         setShowBtn(total_pages && total_pages !== page)
       } catch (error) {
         setError(error)
-        toast.error("This didn't work.");
       } finally {
         setIsLoading(false)
       }
@@ -46,6 +45,10 @@ function App() {
 
 
   const onHandleSubmit = value => {
+    if (!value.trim()) {
+      toast.error('Please enter a search value.');
+      return;
+    }
     setQuery(value);
     setImages([]);
     setPage(1);
@@ -73,7 +76,7 @@ function App() {
   return (
     <>
       <SearchBar onSubmit={onHandleSubmit} />
-      {!images && !isEmpty && <ErrorMessage />}
+      {!images && !isEmpty && <ErrorMessage error={error}/>}
       <ImageGallery images={images} openModal={openModal} />
       {isLoading && <Loader />}
       {showBtn && <LoadMoreBtn onLoadeMore={onLoadeMore} disabled={isLoading} />}
