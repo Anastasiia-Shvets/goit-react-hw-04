@@ -76,7 +76,8 @@ function App() {
   return (
     <>
       <SearchBar onSubmit={onHandleSubmit} />
-      {!images && !isEmpty && <ErrorMessage error={error}/>}
+      {!images && !isEmpty && <ErrorMessage error={error} />}
+      {error && <ErrorMessage error={error}/>}
       <ImageGallery images={images} openModal={openModal} />
       {isLoading && <Loader />}
       {showBtn && <LoadMoreBtn onLoadeMore={onLoadeMore} disabled={isLoading} />}

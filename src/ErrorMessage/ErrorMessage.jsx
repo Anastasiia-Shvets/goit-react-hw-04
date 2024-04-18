@@ -1,8 +1,12 @@
 import { toast } from 'react-hot-toast';
 
 const ErrorMessage = ({ error }) => {
-    toast.error('This is an error!');
-    return null;
+    return (
+        <>
+        {error && toast.error('This is an error!')}
+        </>
+        
+        );
 };
 
 export default ErrorMessage;
