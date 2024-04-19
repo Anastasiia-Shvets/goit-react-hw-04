@@ -1,9 +1,10 @@
 import { toast } from 'react-hot-toast';
 
 const ErrorMessage = ({ error }) => {
+    const notify = () => toast('This is an error!')
     return (
         <>
-        {error && toast.error('This is an error!')}
+            {error && toast.error(notify)}
         </>
         
         );
