@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import SearchBar from './components/SearchBar/SearchBar'
 import { getGallery } from './API/apiServer';
 import ImageGallery from './components/ImageGallery/ImageGallery';
-import LoadMoreBtn from './components/LoadMore/LoadMore';
+import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 import ImageModal from './components/ImageModal/ImageModal';
 import Loader from './components/Loader/Loader';
 import { Toaster } from 'react-hot-toast';
