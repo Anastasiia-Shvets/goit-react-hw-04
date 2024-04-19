@@ -1,10 +1,13 @@
-import { toast } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
 
-const ErrorMessage = ({ error }) => {
-    const notify = () => toast('This is an error!')
+const ErrorMessage = () => {
+    const notify = () => toast.error("This didn't work.")
     return (
         <>
-            {error && toast.error(notify)}
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
         </>
         
         );

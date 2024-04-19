@@ -1,6 +1,6 @@
 import './App.css'
 import { useEffect, useState } from 'react'
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import SearchBar from './components/SearchBar/SearchBar'
 import { getGallery } from './API/apiServer';
 import ImageGallery from './components/ImageGallery/ImageGallery';
@@ -73,10 +73,12 @@ function App() {
     setUrls('');
   }
 
+  const notify = () => <toast className="info">('Please enter a search value.')</toast>
+
   return (
     <>
       <SearchBar onSubmit={onHandleSubmit} />
-      {!images && !isEmpty && <ErrorMessage error={error} />}
+      {!images && !isEmpty && <Toaster position='top-center'  />}
       {error && <ErrorMessage error={notify}/>}
       <ImageGallery images={images} openModal={openModal} />
       {isLoading && <Loader />}
