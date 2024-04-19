@@ -1,13 +1,13 @@
 import './App.css'
 import { useEffect, useState } from 'react'
-import toast, { Toaster } from 'react-hot-toast';
 import SearchBar from './components/SearchBar/SearchBar'
 import { getGallery } from './API/apiServer';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import LoadMoreBtn from './components/LoadMore/LoadMore';
 import ImageModal from './components/ImageModal/ImageModal';
 import Loader from './components/Loader/Loader';
-import ErrorMessage from './ErrorMessage/ErrorMessage';
+import { Toaster } from 'react-hot-toast';
+import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
 
   const onHandleSubmit = value => {
     if (!value.trim()) {
-      toast.error('Please enter a search value.');
+      notify('Please enter a search value.');
       return;
     }
     setQuery(value);
@@ -73,17 +73,21 @@ function App() {
     setUrls('');
   }
 
-  const notify = () => <toast className="info">('Please enter a search value.')</toast>
+  const notify = (message) => <ErrorMessage message={message} />;
 
   return (
     <>
       <SearchBar onSubmit={onHandleSubmit} />
-      {!images && !isEmpty && <Toaster position='top-center'  />}
-      {error && <ErrorMessage error={notify}/>}
-      <ImageGallery images={images} openModal={openModal} />
+      {images.length > 0 && <ImageGallery images={images} openModal={openModal} />}
       {isLoading && <Loader />}
+      {error && notify('Sorry. Something went wrong.')}
+      {isEmpty && notify('Sorry. There are no images...')}
+      
+      
       {showBtn && <LoadMoreBtn onLoadeMore={onLoadeMore} disabled={isLoading} />}
       <ImageModal urls={urls} alt={alt} modalIsOpen={showModal} closeModal={closeModal} />
+
+      <Toaster position='top-center' />
     </>
   )
 }
